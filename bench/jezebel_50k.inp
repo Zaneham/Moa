@@ -1,0 +1,17 @@
+# Jezebel 50K particles - high statistics run
+# PU-MET-FAST-001: bare Pu-Ga alloy sphere
+# Reference k_eff = 1.0000 +/- 0.0020
+
+SURFACE 1 SPH 0.0 0.0 0.0 6.3849
+
+CELL 1 MAT 1 -1 RHO 0.040294
+CELL 2 VOID +1
+
+MATERIAL 1 94239 0.91940 94240 0.04345 94241 0.00290 31069 0.03413
+
+ENDF 94239 data/n_9437_94-Pu-239.dat
+ENDF 94240 data/n_9440_94-Pu-240.dat
+ENDF 94241 data/n_9443_94-Pu-241.dat
+ENDF 31069 data/n_3125_31-Ga-69.dat
+
+KCODE 50000 100 20

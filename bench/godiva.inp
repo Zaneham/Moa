@@ -1,0 +1,36 @@
+# Godiva benchmark: HEU-MET-FAST-001
+# Bare sphere of highly enriched uranium (93.71 wt% U-235)
+# Reference k_eff = 1.0000 +/- 0.0010
+#
+# Geometry: single sphere, radius 8.7407 cm
+# Material: enriched uranium metal, 18.74 g/cm^3
+#
+# The "hello world" of criticality benchmarks. If your code can't
+# get this right, it can't get anything right. Named after Lady
+# Godiva because the assembly is bare (unreflected). Nuclear
+# physicists think they're funny.
+#
+# Reference:
+#   International Criticality Safety Benchmark Evaluation Project.
+#   (2016). International handbook of evaluated criticality safety
+#   benchmark experiments (NEA/NSC/DOC(95)03/I). OECD/NEA.
+#   Evaluation: HEU-MET-FAST-001.
+
+SURFACE 1 SPH 0.0 0.0 0.0 8.7407
+
+CELL 1 MAT 1 -1 RHO 0.047984
+CELL 2 VOID +1
+
+# Real Godiva composition: U-234/U-235/U-238
+# Atom fractions from ICSBEP evaluation:
+#   U-234: 4.9184e-04 / 4.7984e-02 = 0.01025
+#   U-235: 4.4994e-02 / 4.7984e-02 = 0.93772
+#   U-238: 2.4984e-03 / 4.7984e-02 = 0.05204
+MATERIAL 1 92234 0.01025 92235 0.93772 92238 0.05204
+
+ENDF 92234 data/n_9225_92-U-234.dat
+ENDF 92235 data/n_9228_92-U-235.dat
+ENDF 92238 data/n_9237_92-U-238.dat
+
+# 10000 particles/batch, 100 batches, 20 inactive
+KCODE 10000 100 20

@@ -1,0 +1,23 @@
+# Flattop-25 benchmark: HEU-MET-FAST-028 (NVIDIA GPU, 1M particles)
+# HEU sphere reflected by thick natural uranium shell
+# Reference k_eff = 1.0000 +/- 0.0030
+#
+# This is the benchmark where GPUs earn their keep.
+# 200x more collisions per particle than Godiva.
+
+SURFACE 1 SPH 0.0 0.0 0.0 6.1156
+SURFACE 2 SPH 0.0 0.0 0.0 24.1242
+
+CELL 1 MAT 1 -1 RHO 0.047984
+CELL 2 MAT 2 +1 -2 RHO 0.048069
+CELL 3 VOID +2
+
+MATERIAL 1 92234 0.01025 92235 0.93772 92238 0.05204
+MATERIAL 2 92235 0.00720 92238 0.99276
+
+ENDF 92234 data/n_9225_92-U-234.dat
+ENDF 92235 data/n_9228_92-U-235.dat
+ENDF 92238 data/n_9237_92-U-238.dat
+
+KCODE 1000000 100 20
+GPU

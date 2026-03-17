@@ -1,0 +1,35 @@
+# Jezebel-240 benchmark: PU-MET-FAST-002
+# Bare sphere of plutonium with ~20% Pu-240
+# Reference k_eff = 1.0000 +/- 0.0020
+#
+# R = 6.6595 cm, rho = 0.040364 at/b-cm
+#
+# Named after the same Old Testament queen as its sibling.
+# More Pu-240 means more spontaneous fissions and a narrower
+# margin for error — which is why they tested it at Pajarito
+# Canyon and not downtown Santa Fe.
+#
+# Reference:
+#   International Criticality Safety Benchmark Evaluation Project.
+#   (2016). Evaluation: PU-MET-FAST-002.
+
+SURFACE 1 SPH 0.0 0.0 0.0 6.6595
+
+CELL 1 MAT 1 -1 RHO 0.040364
+CELL 2 VOID +1
+
+# Atom fractions from ICSBEP PU-MET-FAST-002:
+#   Pu-239: 0.76520
+#   Pu-240: 0.20133
+#   Pu-241: 0.01458
+#   Pu-242: 0.00562
+#   Ga-69:  0.01327
+MATERIAL 1 94239 0.76520 94240 0.20133 94241 0.01458 94242 0.00562 31069 0.01327
+
+ENDF 94239 data/n_9437_94-Pu-239.dat
+ENDF 94240 data/n_9440_94-Pu-240.dat
+ENDF 94241 data/n_9443_94-Pu-241.dat
+ENDF 94242 data/n_9446_94-Pu-242.dat
+ENDF 31069 data/n_3125_31-Ga-69.dat
+
+KCODE 10000 100 20

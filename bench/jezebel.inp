@@ -1,0 +1,33 @@
+# Jezebel benchmark: PU-MET-FAST-001
+# Bare sphere of plutonium-gallium alloy (~95 wt% Pu-239)
+# Reference k_eff = 1.0000 +/- 0.0020
+#
+# Geometry: single sphere, radius 6.3849 cm
+# Material: Pu-Ga alloy, 15.61 g/cm^3
+#
+# Named by the Los Alamos physicists, who apparently ran out of
+# names from Arthurian legend and moved on to the Old Testament.
+# A bare ball of plutonium. What could possibly go wrong.
+#
+# Reference:
+#   International Criticality Safety Benchmark Evaluation Project.
+#   (2016). Evaluation: PU-MET-FAST-001.
+
+SURFACE 1 SPH 0.0 0.0 0.0 6.3849
+
+CELL 1 MAT 1 -1 RHO 0.040294
+CELL 2 VOID +1
+
+# Atom fractions from ICSBEP:
+#   Pu-239: 3.7047e-02 / 4.0294e-02 = 0.91940
+#   Pu-240: 1.7512e-03 / 4.0294e-02 = 0.04345
+#   Pu-241: 1.1674e-04 / 4.0294e-02 = 0.00290
+#   Ga:     1.3752e-03 / 4.0294e-02 = 0.03413
+MATERIAL 1 94239 0.91940 94240 0.04345 94241 0.00290 31069 0.03413
+
+ENDF 94239 data/n_9437_94-Pu-239.dat
+ENDF 94240 data/n_9440_94-Pu-240.dat
+ENDF 94241 data/n_9443_94-Pu-241.dat
+ENDF 31069 data/n_3125_31-Ga-69.dat
+
+KCODE 10000 100 20

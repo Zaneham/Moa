@@ -1,0 +1,40 @@
+# Build artifacts
+*.o
+*.exe
+*.hsaco
+*.ptx
+
+# Editor cruft
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# OS noise
+Thumbs.db
+.DS_Store
+
+# Nuclear data (user-supplied, too large for git)
+data/*.dat
+data/*.zip
+
+# Debug bisection kernels (internal debugging, not part of the project)
+gpu/tp_bisect*.cu
+gpu/tp_crumb.cu
+gpu/tp_diag1.cu
+gpu/tp_diag2.cu
+gpu/tp_memchk.cu
+gpu/spill_analysis.txt
+gpu/moa_cfg.dot
+gpu/moa_cfg.png
+
+# Debug output
+gpu_stderr.txt
+gpu_stdout.txt
+bkhit.txt
+test_input.inp
+
+# AI assistants
+.claude/
+CLAUDE.md

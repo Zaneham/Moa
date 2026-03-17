@@ -1,0 +1,42 @@
+# Flattop-25 benchmark: HEU-MET-FAST-028
+# HEU sphere reflected by thick natural uranium shell
+# Reference k_eff = 1.0000 +/- 0.0030
+#
+# Geometry: two concentric spheres
+#   Core:      radius 6.1156 cm (enriched uranium, same as Godiva)
+#   Reflector: outer radius 24.1242 cm (natural uranium, ~18 cm thick)
+#
+# The first benchmark that tests whether your code can handle
+# more than one cell. Baby steps.
+#
+# Reference:
+#   International Criticality Safety Benchmark Evaluation Project.
+#   (2016). Evaluation: HEU-MET-FAST-028.
+
+# Two spherical surfaces
+SURFACE 1 SPH 0.0 0.0 0.0 6.1156
+SURFACE 2 SPH 0.0 0.0 0.0 24.1242
+
+# Core: inside surface 1
+CELL 1 MAT 1 -1 RHO 0.047984
+
+# Reflector: outside surface 1, inside surface 2
+CELL 2 MAT 2 +1 -2 RHO 0.048069
+
+# Void: outside surface 2
+CELL 3 VOID +2
+
+# Core material: HEU (same composition as Godiva)
+MATERIAL 1 92234 0.01025 92235 0.93772 92238 0.05204
+
+# Reflector material: natural uranium
+#   U-234: 2.6438e-06 / 4.8069e-02 = 0.000055 (negligible)
+#   U-235: 3.4610e-04 / 4.8069e-02 = 0.00720
+#   U-238: 4.7721e-02 / 4.8069e-02 = 0.99276
+MATERIAL 2 92235 0.00720 92238 0.99276
+
+ENDF 92234 data/n_9225_92-U-234.dat
+ENDF 92235 data/n_9228_92-U-235.dat
+ENDF 92238 data/n_9237_92-U-238.dat
+
+KCODE 10000 100 20
