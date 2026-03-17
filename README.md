@@ -1,10 +1,10 @@
 # Moa
 
-A Monte Carlo neutron transport code in C99.
+**M**onte-carlo **O**pen **A**uditable neutron transport in C99.
 
-Named after the moa: 3.6 metres tall, 230 kg, couldn't fly, couldn't
-outrun a Polynesian with a spear. But it was here first, and that
-counts for something. Much like FORTRAN.
+Also named after the moa: 3.6 metres tall, 230 kg, couldn't fly,
+extinct before anyone thought to write down what it tasted like.
+But it was here first, and that counts for something. Much like FORTRAN.
 
 ## What It Does
 
