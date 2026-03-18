@@ -343,6 +343,15 @@ We got there eventually.
   *International handbook of evaluated criticality safety benchmark
   experiments* (NEA/NSC/DOC(95)03/I). OECD/NEA.
 
+## Support Native Wildlife
+
+The moa is extinct. Let's keep the rest of New Zealand's birds alive.
+
+[Forest & Bird](https://www.forestandbird.org.nz) is Aotearoa's leading
+independent conservation organisation, protecting native species and wild
+places since 1923. If Moa is useful to you, consider
+[making a donation](https://www.forestandbird.org.nz/donate-nature).
+
 ## Licence
 
 Apache 2.0. Do what you like. If you use this to design an actual
