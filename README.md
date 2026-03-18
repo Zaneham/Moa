@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="MOA.png" alt="Moa logo" width="200">
+  <img src="MOA.png" alt="Moa logo" width="400">
 </p>
 
 # Moa
