@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="MOA.png" alt="Moa logo" width="200">
+</p>
+
 # Moa
 
 **M**onte-carlo **O**pen **A**uditable neutron transport in C99.
@@ -72,16 +76,16 @@ benchmark on consumer gaming hardware.
 
 | Particles | CPU (1 thread)  | GPU (RTX 4060 Ti) | Speedup | k_eff              |
 |-----------|-----------------|--------------------|---------|--------------------|
-| 1,000,000 | 107,210 p/s     | 409,690 p/s        | 3.8x    | 0.995 +/- 0.0001  |
-| 2,000,000 | --              | 403,206 p/s        | --      | 0.995 +/- 0.0001  |
+| 1,000,000 | 117,127 p/s     | 406,750 p/s        | 3.5x    | 0.995 +/- 0.0001  |
+| 2,000,000 | --              | 408,090 p/s        | --      | 0.995 +/- 0.0001  |
 
-**3.8x speedup** over a single CPU core. The CPU code is compiled by
+**3.5x speedup** over a single CPU core. The CPU code is compiled by
 GCC -O2, which has had forty years of optimisation passes lavished upon
 it by some of the best compiler engineers alive. The GPU code is compiled
 by BarraCUDA, which has had about three months and does no optimisation
 whatsoever -- no constant folding across blocks, no instruction
 scheduling, no register coalescing. The PTX goes in naive and the
-NVIDIA driver JIT does what it can with the wreckage. 3.8x anyway.
+NVIDIA driver JIT does what it can with the wreckage. 3.5x anyway.
 
 GPU throughput stays flat from 1M to 2M particles -- the RTX 4060 Ti
 isn't breaking a sweat. For Godiva's trivial geometry (1 sphere,
