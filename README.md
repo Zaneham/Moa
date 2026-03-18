@@ -74,10 +74,12 @@ to PTX, loaded via CUDA Driver API, and JIT-compiled by the NVIDIA driver.
 No NVCC involved. Open-source CUDA compiler running a nuclear reactor
 benchmark on consumer gaming hardware.
 
-| Particles | CPU (1 thread)  | GPU (RTX 4060 Ti) | Speedup | k_eff              |
-|-----------|-----------------|--------------------|---------|--------------------|
-| 1,000,000 | 117,127 p/s     | 406,750 p/s        | 3.5x    | 0.995 +/- 0.0001  |
-| 2,000,000 | --              | 408,090 p/s        | --      | 0.995 +/- 0.0001  |
+| Particles  | CPU (1 thread)  | GPU (RTX 4060 Ti) | Speedup | k_eff              |
+|------------|-----------------|--------------------|---------|--------------------|
+| 1,000,000  | 117,127 p/s     | 406,750 p/s        | 3.5x    | 0.995 +/- 0.0001  |
+| 2,000,000  | --              | 408,090 p/s        | --      | 0.995 +/- 0.0001  |
+| 5,000,000  | 122,841 p/s     | 421,352 p/s        | 3.4x    | 0.995 +/- 0.0001  |
+| 10,000,000 | --              | 421,769 p/s        | --      | 0.995 +/- 0.0003  |
 
 **3.5x speedup** over a single CPU core. The CPU code is compiled by
 GCC -O2, which has had forty years of optimisation passes lavished upon
@@ -87,9 +89,10 @@ whatsoever -- no constant folding across blocks, no instruction
 scheduling, no register coalescing. The PTX goes in naive and the
 NVIDIA driver JIT does what it can with the wreckage. 3.5x anyway.
 
-GPU throughput stays flat from 1M to 2M particles -- the RTX 4060 Ti
-isn't breaking a sweat. For Godiva's trivial geometry (1 sphere,
-3 nuclides), this is compute-bound, not memory-bound.
+GPU throughput scales from 407K to 422K p/s as batch size increases
+from 1M to 10M -- more threads means better latency hiding. The
+RTX 4060 Ti peaks around 422K p/s for Godiva. At 10M particles per
+batch, each run simulates 300 million neutron histories in 12 minutes.
 
 **Where GPU wins:** Any batch size above ~100K. The GPU's 4,352 CUDA
 cores outnumber a single CPU core's ability to care.
