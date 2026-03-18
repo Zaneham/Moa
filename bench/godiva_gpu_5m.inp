@@ -1,0 +1,16 @@
+# Godiva benchmark: HEU-MET-FAST-001 (NVIDIA GPU, 5M particles)
+# Enough threads to actually make a 4060 Ti think about it.
+
+SURFACE 1 SPH 0.0 0.0 0.0 8.7407
+
+CELL 1 MAT 1 -1 RHO 0.047984
+CELL 2 VOID +1
+
+MATERIAL 1 92234 0.01025 92235 0.93772 92238 0.05204
+
+ENDF 92234 data/n_9225_92-U-234.dat
+ENDF 92235 data/n_9228_92-U-235.dat
+ENDF 92238 data/n_9237_92-U-238.dat
+
+KCODE 5000000 50 10
+GPU

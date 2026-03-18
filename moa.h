@@ -30,7 +30,7 @@
 #define MO_MAX_CELL   256      /* max cells (bumped for lattice univ)  */
 #define MO_MAX_NUC    48       /* max nuclides                         */
 #define MO_MAX_EPTS   10000    /* max energy grid points per nuclide   */
-#define MO_MAX_PART   2000000  /* max particles per batch              */
+#define MO_MAX_PART   10000000 /* max particles per batch              */
 #define MO_MAX_TBIN   1000     /* max tally bins                       */
 #define MO_MAX_REG    64       /* max tally regions                    */
 #define MO_MAX_MAT    16       /* max materials                        */

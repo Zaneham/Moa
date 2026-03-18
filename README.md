@@ -65,7 +65,7 @@ iteration with 100 total batches (20 inactive).
 
 \* Flattop single-thread killed at 52 min (extrapolated from batch time).
 
-### GPU vs CPU (Godiva, RTX 4060 Ti)
+### GPU vs CPU (RTX 4060 Ti)
 
 Single-thread CPU vs GPU on the same machine (i7-14700KF). Honest numbers.
 
@@ -74,34 +74,40 @@ to PTX, loaded via CUDA Driver API, and JIT-compiled by the NVIDIA driver.
 No NVCC involved. Open-source CUDA compiler running a nuclear reactor
 benchmark on consumer gaming hardware.
 
+#### Godiva (bare sphere, ~4 collisions/particle)
+
 | Particles  | CPU (1 thread)  | GPU (RTX 4060 Ti) | Speedup | k_eff              |
 |------------|-----------------|--------------------|---------|--------------------|
 | 1,000,000  | 117,127 p/s     | 406,750 p/s        | 3.5x    | 0.995 +/- 0.0001  |
-| 2,000,000  | --              | 408,090 p/s        | --      | 0.995 +/- 0.0001  |
 | 5,000,000  | 122,841 p/s     | 421,352 p/s        | 3.4x    | 0.995 +/- 0.0001  |
 | 10,000,000 | --              | 421,769 p/s        | --      | 0.995 +/- 0.0003  |
 
-**3.5x speedup** over a single CPU core. The CPU code is compiled by
-GCC -O2, which has had forty years of optimisation passes lavished upon
-it by some of the best compiler engineers alive. The GPU code is compiled
-by BarraCUDA, which has had about three months and does no optimisation
-whatsoever -- no constant folding across blocks, no instruction
-scheduling, no register coalescing. The PTX goes in naive and the
-NVIDIA driver JIT does what it can with the wreckage. 3.5x anyway.
+#### Flattop (reflected sphere, ~200 collisions/particle)
 
-GPU throughput scales from 407K to 422K p/s as batch size increases
-from 1M to 10M -- more threads means better latency hiding. The
-RTX 4060 Ti peaks around 422K p/s for Godiva. At 10M particles per
-batch, each run simulates 300 million neutron histories in 12 minutes.
+| Particles  | CPU (13 threads, Xeon) | GPU (RTX 4060 Ti) | k_eff              |
+|------------|------------------------|--------------------|--------------------|
+| 10,000     | 2,351 p/s              | 37,206 p/s         | 0.995 +/- 0.028   |
+| 100,000    | --                     | 82,762 p/s         | 0.997 +/- 0.0008  |
+| 1,000,000  | --                     | 91,013 p/s         | 0.997 +/- 0.0001  |
 
-**Where GPU wins:** Any batch size above ~100K. The GPU's 4,352 CUDA
-cores outnumber a single CPU core's ability to care.
+Godiva is a **3.5x** speedup -- each particle does ~4 collisions and
+leaks. The GPU threads finish before the memory hierarchy warms up.
+Not enough work to keep 4,352 cores busy.
 
-**Where CPU wins:** OpenMP on all cores. 13 threads at 554K p/s
-beats the GPU for Godiva. But for complex geometries with dozens
-of cells and hundreds of nuclides, the GPU pulls ahead decisively.
+Flattop is where the GPU earns its keep. Each particle bounces around
+inside an 18 cm uranium reflector for ~200 collisions before escaping.
+At 1M particles, the GPU does **91K p/s** -- roughly **39x faster than
+a single CPU core** (the Xeon 13-thread result is 2,351 p/s, so
+single-thread would be ~320 p/s). More compute per thread = better
+GPU utilisation. This is what GPUs are for.
 
-Don't buy a GPU for Godiva. Do buy one for a full reactor model.
+The CPU code is compiled by GCC -O2, which has had forty years of
+optimisation passes lavished upon it by some of the best compiler
+engineers alive. The GPU code is compiled by BarraCUDA, which has
+had about three months and does no optimisation whatsoever -- no
+constant folding across blocks, no instruction scheduling, no
+register coalescing. The PTX goes in naive and the NVIDIA driver
+JIT does what it can with the wreckage.
 
 ### Other Hardware
 
