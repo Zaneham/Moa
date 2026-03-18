@@ -19,11 +19,12 @@
  * and interpolate all other reactions onto it. Learned this the hard
  * way when everything came out as zero. Ask me how I know.
  *
- * NOTE: In the resolved/unresolved resonance region, MF3 only gives
- * the background cross-section. The actual XS requires MF2 resonance
- * reconstruction (not implemented). For fast-spectrum problems like
- * Godiva, the MF3 data is correct above ~150 keV which is where most
- * of the action happens anyway.
+ * NOTE: In the resolved resonance region, MF3 only gives the smooth
+ * background cross-section. The actual XS requires adding MF2
+ * resonance contributions, which is handled by nd_res.c (SLBW) and
+ * nd_rmat.c (Reich-Moore). The unresolved region is covered by
+ * probability tables in nd_urr.c. All three are wired into xs_look
+ * in nd_xs.c.
  *
  * Reference:
  *   Herman, M., & Trkov, A. (Eds.). (2009). ENDF-6 formats manual:

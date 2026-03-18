@@ -6,8 +6,8 @@
  * Usage: moa input.inp [--seed N] [--verbose]
  *
  * Named after the moa: 3.6 metres tall, 230 kg, couldn't fly,
- * couldn't outrun a Polynesian with a spear. But it was here
- * first, and that counts for something.
+ * extinct before anyone thought to write down what it tasted
+ * like. But it was here first, and that counts for something.
  */
 
 #define KAURI_IMPL
