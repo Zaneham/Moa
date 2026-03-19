@@ -20,8 +20,7 @@
  * compiler would inline everything anyway, so we're just
  * doing its job for it. More honest this way.
  *
- * Target: MI300X (gfx942, CDNA3) via BarraCUDA -> .hsaco
- * Style:  JPL-style, HLASM naming, British/Kiwi absurdism
+ * Target: MI300X (gfx942, CDNA3) via BarraCUDA -> .hsaco luv
  */
 
 /* ---- Constants ---- */
